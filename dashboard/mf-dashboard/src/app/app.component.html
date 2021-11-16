@@ -1,25 +1,66 @@
-Hola, soy el dashboard
+<body class="fondo" >
 
-<div>
-    <div>
-        <div style="display: block">
-            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
-            </canvas>
-        </div>
-    </div>
-</div>
-
-<div>
-    <div>
-      <div style="display: block">
-        <canvas baseChart
-          [datasets]="barChartData"
-          [labels]="barChartLabels"
-          [options]="barChartOptions"
-          [legend]="barChartLegend"
-          [chartType]="barChartType">
-        </canvas>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        
+        <h2>Artistas reproducidos</h2>
+        <div>
+          <div>
+              <div style="display: block">
+                  <canvas baseChart [data]="doughnutChartData"  [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                  </canvas>
+              </div>
+          </div>
       </div>
-      <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+
+      </div>
+      <div class="col">
+        
+        <h2>Canciones reproducidas</h2>
+        <div>
+          <div>
+            <div style="display: block">
+              <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row"><div class="col"></div> 
+
+    </div>
+    <div class="row">
+      <div class="col">
+        
+        <h2>Score de canciones</h2>
+        <div>
+          <div>
+            <div style="display: block">
+              <canvas baseChart
+                [data]="polarAreaChartData"
+                [labels]="polarAreaChartLabels"
+                [legend]="polarAreaLegend" 
+                [chartType]="polarAreaChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
+
+
+
+
+
+</body>

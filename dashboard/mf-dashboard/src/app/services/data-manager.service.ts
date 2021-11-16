@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
-import { Label, SingleDataSet } from 'ng2-charts';
+import { Color, Colors, Label, SingleDataSet } from 'ng2-charts';
 import Artista from '../clases/artista';
 import Cancion from '../clases/cancion';
 import Palabras from '../clases/palabras';
@@ -21,6 +21,16 @@ export class DataManagerService {
       "_id": '',
       "nombre":"shakira",
       "reproducciones": 84
+    },
+    {
+      "_id": '',
+      "nombre":"Adele",
+      "reproducciones": 74
+    },
+    {
+      "_id": '',
+      "nombre":"Taylor Swift",
+      "reproducciones": 55
     },
   ];
   public songsData: Cancion[] = [
@@ -96,7 +106,7 @@ export class DataManagerService {
     values.push(tmpValues);
 
     console.log(values);
-    return { "labels": labels, "values": values };
+    return { "labels": labels, "values": values, colors: { backgroundColor: this.colors, borderColor: 'transparent' }};
   }
 
   getSongsReady() {
@@ -123,7 +133,9 @@ export class DataManagerService {
       values.push(lyric.presicion);
     })
 
-    let result = { labels: labels, values: values };
+    let randomColors = [];
+    randomColors = <Color[]> Array.from({ length: values.length }, () => this.colors);
+    let result = { labels: labels, values: values, colors: { backgroundColor: this.colors, borderColor: 'transparent' }};
     return result;
   }
 

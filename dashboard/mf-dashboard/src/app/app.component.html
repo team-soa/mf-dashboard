@@ -4,11 +4,15 @@
     <div class="row">
       <div class="col">
         
-        <h2>Artistas reproducidos</h2>
         <div>
           <div>
               <div style="display: block">
-                  <canvas baseChart [data]="doughnutChartData"  [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                  <canvas baseChart 
+                  [colors]="roundColors" 
+                  [data]="doughnutChartData" 
+                  [options]="roundOptions" 
+                  [labels]="doughnutChartLabels" 
+                  [chartType]="doughnutChartType">
                   </canvas>
               </div>
           </div>
@@ -17,7 +21,6 @@
       </div>
       <div class="col">
         
-        <h2>Canciones reproducidas</h2>
         <div>
           <div>
             <div style="display: block">
@@ -41,7 +44,6 @@
     <div class="row">
       <div class="col">
         
-        <h2>Score de canciones</h2>
         <div>
           <div>
             <div style="display: block">
@@ -49,7 +51,10 @@
                 [data]="polarAreaChartData"
                 [labels]="polarAreaChartLabels"
                 [legend]="polarAreaLegend" 
-                [chartType]="polarAreaChartType">
+                [chartType]="polarAreaChartType"
+                [options]="polarOptions"
+                [colors]="polarColors"
+                >
               </canvas>
             </div>
           </div>

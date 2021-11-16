@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label, MultiDataSet, SingleDataSet, ThemeService } from 'ng2-charts';
+import { Color, Label, MultiDataSet, SingleDataSet, ThemeService } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { DataManagerService } from './services/data-manager.service';
 
@@ -19,7 +19,7 @@ export class AppComponent {
     [350, 460, 20],
   ];
   public doughnutChartType: ChartType = 'doughnut';
-
+  public roundColors :Color[]=[]
   // Bar - canciones reproducidas
   public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartType: ChartType = 'bar';
@@ -35,7 +35,7 @@ export class AppComponent {
   public polarAreaChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
   public polarAreaChartData: SingleDataSet = [300, 500, 100, 40, 120];
   public polarAreaLegend = true;
-
+  public polarColors: Color[]=[];
   public polarAreaChartType: ChartType = 'polarArea';
   
   constructor(private dataManager: DataManagerService, private themeService: ThemeService) { }
@@ -46,13 +46,14 @@ export class AppComponent {
     let words = this.dataManager.getWordsReady();
     this.doughnutChartLabels = <Label[]>artists.labels;
     this.doughnutChartData = <MultiDataSet>artists.values;
+    this.roundColors = <Color[]>[artists.colors];
     
     this.barChartData = songs.values;
     this.barChartLabels = <Label[]>songs.labels;
     
     this.polarAreaChartLabels = <Label[]>words.labels;
     this.polarAreaChartData = words.values;
-
+    this.polarColors = <Color[]> [words.colors];
   }
 
   // events
@@ -68,6 +69,13 @@ export class AppComponent {
     legend: {
       labels: { fontColor: 'white' }
     },
+    title: {
+      text: "CANCIONES MÁS REPRODUCIDAS",
+      fontColor: "white",
+      display: true,
+      fullWidth: true,
+      fontSize: 25
+    },
     scales: {
       xAxes: [ {
         ticks: { fontColor: 'white' },
@@ -79,4 +87,58 @@ export class AppComponent {
       } ]
     },
   };
+
+  public polarOptions: ChartOptions = {
+    legend: {
+      labels: { fontColor: 'white' }
+    },
+    title: {
+      text: "PRECICIÓN DE PALABRAS",
+      fontColor: "white",
+      display: true,
+      fullWidth: true,
+      fontSize: 25
+    },
+    tooltips: {
+      enabled: true,
+      backgroundColor: 'white',
+      bodyFontColor: 'black'
+    },
+    scale: {
+      display: true,
+      gridLines: {
+        display: true,
+        circular: true,
+        color: '#A30057',
+        lineWidth: 0.5
+      }
+    },
+    elements: {
+      line: {
+        backgroundColor: 'white',
+        borderColor: 'white',
+        borderWidth: 20
+      }
+    },   
+  };
+
+  public roundOptions: ChartOptions = {
+    legend: {
+      labels: { fontColor: 'white' }
+    },
+    title: {
+      text: "ARTISTAS MÁS ESCUCHADOS",
+      fontColor: "white",
+      display: true,
+      fullWidth: true,
+      fontSize: 25
+    },
+    tooltips: {
+      enabled: true,
+      backgroundColor: 'white',
+      bodyFontColor: 'black'
+    },
+    
+  };
+
 }

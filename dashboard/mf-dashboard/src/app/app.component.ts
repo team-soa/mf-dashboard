@@ -3,6 +3,10 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label, MultiDataSet, SingleDataSet, ThemeService } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { DataManagerService } from './services/data-manager.service';
+import { CookieService } from 'ngx-cookie-service';
+import Artista from './clases/artista';
+import Cancion from './clases/cancion';
+import Palabras from './clases/palabras';
 
 
 @Component({
@@ -12,6 +16,11 @@ import { DataManagerService } from './services/data-manager.service';
 })
 export class AppComponent {
   title = 'mf-dashboard';
+
+
+  constructor(private dataManager: DataManagerService, private themeService: ThemeService,
+    private cookie: CookieService) { }
+
 
   // Doughnut - artistas reproducidos
   public doughnutChartLabels: Label[] = ['Crazy', 'Lost', 'Love'];
@@ -38,9 +47,14 @@ export class AppComponent {
   public polarColors: Color[]=[];
   public polarAreaChartType: ChartType = 'polarArea';
   
-  constructor(private dataManager: DataManagerService, private themeService: ThemeService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+    this.dataManager.artistsData = await this.dataManager.obtenerListaArtistas().toPromise()
+    this.dataManager.songsData = await this.dataManager.obtenerListaCanciones().toPromise()
+    this.dataManager.wordsData = await this.dataManager.obtenerListaPalabras().toPromise()
+
+
     let artists = this.dataManager.getArtistsReady();
     let songs = this.dataManager.getSongsReady();
     let words = this.dataManager.getWordsReady();

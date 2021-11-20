@@ -22,7 +22,7 @@ export class DataManagerService {
     let options = {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.cookieService.get("token"))
     };
-    return this.http.get<Artista[]>(this.URL + '/artista', options);
+    return this.http.get<Artista[]>(this.URL + '/artistas', options);
   }
 
   public obtenerListaCanciones(): Observable<Cancion[]>{
@@ -41,82 +41,9 @@ export class DataManagerService {
 
 
 
-  public artistsData: Artista[] = [
-    {
-      "_id": '',
-      "nombre":"ed Sheeran",
-      "reproducciones": 34
-    },
-    {
-      "_id": '',
-      "nombre":"shakira",
-      "reproducciones": 84
-    },
-    {
-      "_id": '',
-      "nombre":"Adele",
-      "reproducciones": 74
-    },
-    {
-      "_id": '',
-      "nombre":"Taylor Swift",
-      "reproducciones": 55
-    },
-  ];
-  public songsData: Cancion[] = [
-    {
-      _id: '',
-      nombre: 'Lover',
-      reproducciones: 30
-    },
-    {
-      _id: '',
-      nombre: 'Ronan',
-      reproducciones: 27
-    },
-    {
-      _id: '',
-      nombre: 'Reputation',
-      reproducciones: 29
-    },
-    {
-      _id: '',
-      nombre: 'All too well',
-      reproducciones: 45
-    },
-  ];
-  public wordsData: Palabras[] = [
-    {
-      _id: '',
-      palabra: "round",
-      presicion: 60
-    },
-    {
-      _id: '',
-      palabra: "ever",
-      presicion: 50
-    },
-    {
-      _id: '',
-      palabra: "mind",
-      presicion: 90
-    },
-    {
-      _id: '',
-      palabra: "crazy",
-      presicion: 80
-    },
-    {
-      _id: '',
-      palabra: "soul",
-      presicion: 60
-    },
-    {
-      _id: '',
-      palabra: "happen",
-      presicion: 20
-    },
-  ];
+  public artistsData: Artista[] = [ ];
+  public songsData: Cancion[] = [  ];
+  public wordsData: Palabras[] = [  ];
 
 
   getArtistsReady() {  

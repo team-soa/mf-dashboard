@@ -1,15 +1,45 @@
 import { Injectable } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Color, Colors, Label, SingleDataSet } from 'ng2-charts';
+import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
+import { CookieService } from 'ngx-cookie-service';
 import Artista from '../clases/artista';
 import Cancion from '../clases/cancion';
 import Palabras from '../clases/palabras';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataManagerService {
+
+  URL = "http://localhost:4005"
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+  }
   public colors = ['#FEBE0B', '#FB5708', '#1AD39F', '#FE006F', '#A30057', '#FF3233'];
+
+  public obtenerListaArtistas(): Observable<Artista[]>{
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.cookieService.get("token"))
+    };
+    return this.http.get<Artista[]>(this.URL + '/artista', options);
+  }
+
+  public obtenerListaCanciones(): Observable<Cancion[]>{
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.cookieService.get("token"))
+    };
+    return this.http.get<Cancion[]>(this.URL + '/canciones', options);
+  }
+
+  public obtenerListaPalabras(): Observable<Palabras[]>{
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.cookieService.get("token"))
+    };
+    return this.http.get<Palabras[]>(this.URL + '/palabras', options);
+  }
+
+
 
   public artistsData: Artista[] = [
     {
@@ -88,9 +118,8 @@ export class DataManagerService {
     },
   ];
 
-  constructor() { }
 
-  getArtistsReady() {
+  getArtistsReady() {  
     let labels: (string | undefined)[] = [];
     let tmpValues: (number | null | undefined | number[])[] = [];
     let values: typeof tmpValues[] = [];

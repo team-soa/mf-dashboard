@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  mfdashboard:
+    image: mfdashboard
+    build:
+      context: dashboard/mf-dashboard
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 4204:4204
+      - 9229:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "index.js"]

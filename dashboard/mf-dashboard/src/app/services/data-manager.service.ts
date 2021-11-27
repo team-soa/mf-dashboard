@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class DataManagerService {
 
-  URL = "http://20.114.84.8:4005"
+  URL = "http://20.189.25.216:4005"
   constructor(private http: HttpClient, private cookieService: CookieService) {
   }
   public colors = ['#FEBE0B', '#FB5708', '#1AD39F', '#FE006F', '#A30057', '#FF3233'];

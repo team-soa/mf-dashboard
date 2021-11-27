@@ -89,9 +89,17 @@ export class DataManagerService {
       values.push(lyric.presicion);
     })
 
-    let randomColors = [];
-    randomColors = <Color[]> Array.from({ length: values.length }, () => this.colors);
-    let result = { labels: labels, values: values, colors: { backgroundColor: this.colors, borderColor: 'transparent' }};
+    let randomColors: string[] = [];
+    let cont = 0;
+    values.forEach(value => {
+      if (cont >= values.length) { cont = 0 }
+      else {
+        randomColors.push(this.colors[cont]);
+        cont = cont + 1;
+      }
+    })
+    // randomColors = <Color[]> Array.from({ length: values.length }, () => this.colors);
+    let result = { labels: labels, values: values, colors: { backgroundColor: randomColors, borderColor: 'transparent' }};
     return result;
   }
 

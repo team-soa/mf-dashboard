@@ -92,13 +92,17 @@ export class DataManagerService {
     let randomColors: string[] = [];
     let cont = 0;
     values.forEach(value => {
-      if (cont >= values.length) { cont = 0 }
-      else {
-        randomColors.push(this.colors[cont]);
+      randomColors.push(this.colors[cont]);
+      if (cont >= this.colors.length -1)
+      {
+        cont = 0
+      } else {
         cont = cont + 1;
       }
     })
+    console.log(randomColors);
     // randomColors = <Color[]> Array.from({ length: values.length }, () => this.colors);
+    if (values.length > 15) { values = values.slice(0, 15); labels = labels.slice(0,15)};
     let result = { labels: labels, values: values, colors: { backgroundColor: randomColors, borderColor: 'transparent' }};
     return result;
   }

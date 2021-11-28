@@ -1,35 +1,35 @@
-<body class="fondo" >
+<body class="fondo">
+
+  <div class="jumbotron jumbotron-fluid jumbo">
+    <div class="container jumboAux">
+      <h1 class="display-4">Estadísticas</h1>
+      <p class="lead">Aquí podrás encontrar el análisis de los artistas y canciones más escuchadas así como la
+        calificación la pronunciación.</p>
+    </div>
+  </div>
 
   <div class="container">
     <div class="row">
       <div class="col">
-        
-        <div>
-          <div>
-              <div style="display: block">
-                  <canvas baseChart 
-                  [colors]="roundColors" 
-                  [data]="doughnutChartData" 
-                  [options]="roundOptions" 
-                  [labels]="doughnutChartLabels" 
-                  [chartType]="doughnutChartType">
-                  </canvas>
-              </div>
-          </div>
-      </div>
 
-      </div>
-      <div class="col">
-        
         <div>
           <div>
             <div style="display: block">
-              <canvas baseChart
-                [datasets]="barChartData"
-                [labels]="barChartLabels"
-                [options]="barChartOptions"
-                [legend]="barChartLegend"
-                [chartType]="barChartType">
+              <canvas baseChart [colors]="roundColors" [data]="doughnutChartData" [options]="roundOptions"
+                [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col">
+
+        <div>
+          <div>
+            <div style="display: block">
+              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
               </canvas>
             </div>
           </div>
@@ -38,23 +38,18 @@
       </div>
     </div>
 
-    <div class="row"><div class="col"></div> 
+    <div class="row">
+      <div class="col"></div>
 
     </div>
     <div class="row">
       <div class="col">
-        
+
         <div>
           <div>
             <div style="display: block">
-              <canvas baseChart
-                [data]="polarAreaChartData"
-                [labels]="polarAreaChartLabels"
-                [legend]="polarAreaLegend" 
-                [chartType]="polarAreaChartType"
-                [options]="polarOptions"
-                [colors]="polarColors"
-                >
+              <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend"
+                [chartType]="polarAreaChartType" [options]="polarOptions" [colors]="polarColors">
               </canvas>
             </div>
           </div>
@@ -64,8 +59,24 @@
     </div>
   </div>
 
+  <div class="kTable">
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Palabra</th>
+          <th scope="col">Puntuación</th>
 
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let word of restOfWords" >
+          <th  scope="row">{{word.label}}</th>
+          <td>{{word.value}}</td>
 
+        </tr>
+      </tbody>
+    </table>
 
+  </div>
 
 </body>

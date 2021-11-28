@@ -41,7 +41,7 @@ export class AppComponent {
   public polarAreaLegend = true;
   public polarColors: Color[]=[];
   public polarAreaChartType: ChartType = 'polarArea';
-  
+  public restOfWords:{ value: number | number[] | null | undefined; label: string | undefined; }[]  = []
 
   async ngOnInit() {
 
@@ -62,7 +62,9 @@ export class AppComponent {
     
     this.polarAreaChartLabels = <Label[]>words.labels;
     this.polarAreaChartData = words.values;
-    this.polarColors = <Color[]> [words.colors];
+    this.polarColors = <Color[]>[words.colors];
+    
+    this.restOfWords = words.restOfWords;
   }
 
   // events

@@ -83,6 +83,8 @@ export class DataManagerService {
   getWordsReady() {
     let labels: (string | undefined)[] = [];
     let values: (number | null | undefined | number[])[] = [];
+    let restingWords: { value: number | number[] | null | undefined; label: string | undefined; }[] = [];
+    let restingWordsLabels: (string | undefined)[] = [];
 
     this.wordsData.forEach(lyric => {
       labels.push(lyric.palabra);
@@ -102,8 +104,25 @@ export class DataManagerService {
     })
     console.log(randomColors);
     // randomColors = <Color[]> Array.from({ length: values.length }, () => this.colors);
-    if (values.length > 15) { values = values.slice(0, 15); labels = labels.slice(0,15)};
-    let result = { labels: labels, values: values, colors: { backgroundColor: randomColors, borderColor: 'transparent' }};
+    if (values.length > 15) {
+      let cont = 0;
+      values.forEach(value => {
+        restingWords.push({
+          value: value,
+          label: labels[cont]
+        })
+        cont=cont+1
+      })
+      restingWordsLabels = labels.slice(16);
+      values = values.slice(0,16)
+      labels = labels.slice(0,16)
+    };
+    let result = {
+      labels: labels,
+      values: values,
+      colors: { backgroundColor: randomColors, borderColor: 'transparent' },
+      restOfWords :restingWords.slice(16)
+    };
     return result;
   }
 
